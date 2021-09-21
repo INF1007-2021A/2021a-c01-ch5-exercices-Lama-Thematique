@@ -31,7 +31,7 @@ def prime_integer_summation() -> int:
 def prime(n):
     if(n < 2):
         return False
-    for i in range(2,int(n/2)+1):
+    for i in range(2,n//2):
         if n%i == 0:
             return False
     return True
@@ -50,22 +50,21 @@ def use_continue() -> None:
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return [testgroup(group) for group in groups]
+#    return [testgroup(group) for group in groups]
+    return [not(len(group)>10 or len(group)<3)and(25 in group or (not(min(group)<18) and not(50 in group and max(group)>70))) for group in groups]
         
 
 def testgroup(ages):
-    if len(ages) > 10 or len(ages) < 3:
-            return False
-    if 25 in ages:
-        return True
-    
-    over70 = False
-    for age in ages:
-        if (age < 18):
-            return False
-        over70 = over70 or age > 70
-    if 50 in ages and over70:
-        return False
+    return not(len(ages) > 10 or len(ages) < 3) and (25 in ages or ( not(min(ages) < 18) and not(50 in ages and max(ages) > 70) ) )
+
+#    if len(ages) > 10 or len(ages) < 3:
+#        return False
+#    if 25 in ages:
+#        return True
+#    if min(ages) < 18:
+#         return False
+#    if 50 in ages and max(ages) > 70:
+#        return False
 
 
         
